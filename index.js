@@ -9,6 +9,16 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 app.get('/', (req, res) => res.render('home'));
+
+const arrUsername = [];
+
 io.on('connection', socket => {
-    console.log(socket.id);
+    socket.on('DANG_KY_USERNAME', username => {
+        if (arrUsername.indexOf(username) !== -1) {
+            return socket.emit('XAC_NHAN_DANG_KY', false);
+        }
+        socket.emit('XAC_NHAN_DANG_KY', arrUsername);
+        arrUsername.push(username);
+        io.emit('NGUOI_DUNG_MOI', username);
+    });
 });
