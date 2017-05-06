@@ -1,16 +1,10 @@
-const { io } = require('./index');
+const { io } = require('./config');
 
 const arrUsername = [];
 
 io.on('connection', socket => {
     socket.on('DANG_KY_USERNAME', username => {
-        if (arrUsername.indexOf(username) !== -1) {
-            return socket.emit('XAC_NHAN_DANG_KY', false);
-        }
-        socket.username = username;// eslint-disable-line
-        socket.emit('XAC_NHAN_DANG_KY', arrUsername);
-        arrUsername.push(username);
-        io.emit('NGUOI_DUNG_MOI', username);
+        require('./controller/dangKyUser')(username, socket, io);
     });
 
     socket.on('NGUOI_DUNG_GUI_TIN', message => {

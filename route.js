@@ -1,5 +1,5 @@
 const express = require('express');
-const { app } = require('./index');
+const { app } = require('./config');
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
