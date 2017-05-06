@@ -24,3 +24,5 @@ $('document').ready(() => {
         alert('Username da ton tai!');
     });
 });
+
+//https://socket.io/docs/emit-cheatsheet/
